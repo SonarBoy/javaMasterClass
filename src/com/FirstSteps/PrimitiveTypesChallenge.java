@@ -13,5 +13,6 @@ public class PrimitiveTypesChallenge {
 		
 		System.out.println(total);
 		System.out.println(shortTotal);
+		System.out.println();
 	}
 }
