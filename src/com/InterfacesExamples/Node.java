@@ -13,7 +13,7 @@ public class Node extends ListItem {
 		
 		return this.rightLink;
 		
-	}
+	} 
 
 	@Override
 	protected ListItem setNext(ListItem link) {
