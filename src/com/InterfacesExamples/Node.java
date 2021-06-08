@@ -1,6 +1,6 @@
 package com.InterfacesExamples;
 
-public class Node extends ListItem {
+public class Node<T> extends ListItem {
 
 	public Node(Object val) {
 		
@@ -41,8 +41,21 @@ public class Node extends ListItem {
 
 	@Override
 	protected int compareTo(ListItem link) {
+		
 		if(link != null) {
-			return ((String) super.getValue()).compareTo((String) link.getValue());
+			
+			int x = Integer.parseInt(super.getValue()+"");
+			int y = Integer.parseInt(link.getValue()+"");
+			
+			if(x < y) {
+				return -1;
+			}else if(x > y) {
+				return 1;
+			}else {
+				return 0;
+			}
+			
+			//return ((String) super.getValue()).compareTo((String) link.getValue());
 		}else {
 			return -1;
 		}

@@ -99,21 +99,21 @@ public class SearchTree implements NodeList {
 	    }
 
 
-	    private void performRemoval(ListItem item, ListItem parent) {
+	    private void performRemoval(ListItem item, ListItem parentItem) {
 	    	
 	        // remove item from the tree
 	        if (item.next() == null) {
 	        	
 	            // no right tree, so make parent point to left tree (which may be null)
-	            if (parent.next() == item) {
+	            if (parentItem.next() == item) {
 	            	
 	                // item is right child of its parent
-	                parent.setNext(item.previous());
+	                parentItem.setNext(item.previous());
 	                
-	            } else if (parent.previous() == item) {
+	            } else if (parentItem.previous() == item) {
 	            	
 	                // item is left child of its parent
-	                parent.setPrevious(item.previous());
+	                parentItem.setPrevious(item.previous());
 	                
 	            } else {
 	            	
@@ -124,15 +124,15 @@ public class SearchTree implements NodeList {
 	        } else if (item.previous() == null) {
 	        	
 	            // no left tree, so make parent point to right tree (which may be null)
-	            if (parent.next() == item) {
+	            if (parentItem.next() == item) {
 	            	
 	                // item is right child of its parent
-	                parent.setNext(item.next());
+	                parentItem.setNext(item.next());
 	                
-	            } else if (parent.previous() == item) {
+	            } else if (parentItem.previous() == item) {
 	            	
 	                // item is left child of its parent
-	                parent.setPrevious(item.next());
+	                parentItem.setPrevious(item.next());
 	                
 	            } else {
 	            	
@@ -144,21 +144,31 @@ public class SearchTree implements NodeList {
 	            // From the right sub-tree, find the smallest value (i.e., the leftmost).
 	            ListItem current = item.next();
 	            ListItem leftmostParent = item;
+	            
 	            while (current.previous() != null) {
 	                leftmostParent = current;
 	                current = current.previous();
 	            }
+	            
 	            // Now put the smallest value into our node to be deleted
 	            item.setValue(current.getValue());
+	            
 	            // and delete the smallest
+	            
 	            if (leftmostParent == item) {
+	            	
 	                // there was no leftmost node, so 'current' points to the smallest
 	                // node (the one that must now be deleted).
+	            	
 	                item.setNext(current.next());
+	                
 	            } else {
+	            	
 	                // set the smallest node's parent to point to
 	                // the smallest node's right child (which may be null).
+	            	
 	                leftmostParent.setPrevious(current.next());
+	                
 	            }
 	        }
 	    }
