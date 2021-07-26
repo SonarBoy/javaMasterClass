@@ -51,7 +51,7 @@ public class BankAccountTest {
 		System.out.println("Execution Count " + showWhenExecuted++);
 	}
 	
-	
+	//This is how you catch an exception in a junit test.
 	@org.junit.Test(expected = IllegalArgumentException.class)
 	public void getBalance_withdraw_notBranch() throws Exception{
 		
