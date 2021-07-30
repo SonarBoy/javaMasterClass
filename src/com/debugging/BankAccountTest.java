@@ -56,8 +56,22 @@ public class BankAccountTest {
 	public void getBalance_withdraw_notBranch() throws Exception{
 		
 		this.account.withdraw(600, false);
-		assertEquals(400,this.account.getBalance(),0);
-		System.out.println("Execution Count " + showWhenExecuted++);
+		fail("Should have thrown IllegalArgumentException");
+//		assertEquals(400,this.account.getBalance(),0);
+//		System.out.println("Execution Count " + showWhenExecuted++);
+	}
+	
+	@org.junit.Test //(expected = IllegalArgumentException.class)
+	public void legacy_exception_handling() throws Exception{
+		try {
+			this.account.withdraw(600, false);
+			//fail("Should have thrown IllegalArgumentException");
+		}catch(Exception ex) {
+			
+		}
+		
+//		assertEquals(400,this.account.getBalance(),0);
+//		System.out.println("Execution Count " + showWhenExecuted++);
 	}
 	
 	@org.junit.Test

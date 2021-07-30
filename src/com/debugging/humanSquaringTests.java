@@ -6,29 +6,26 @@ import static org.junit.Assert.fail;
 
 public class humanSquaringTests {
 	
+	HumanSquaringObject obj;
+	
 	@org.junit.Before
 	public void setup() {
-		
+		this.obj = new HumanSquaringObject();
 	}
 	
 	@org.junit.Test
 	public void correctAns() {
 		
-		humanSquaring.humanSquaring(285);
-		assertEquals((285 * 285),humanSquaring.ans);
+		this.obj.humanSquaring(285);
+		
+		assertEquals((285 * 285),this.obj.ans);
 	}
 	
 	@org.junit.Test
 	public void numbersInTens() {
 		
-//		for(int runner = 5; runner <= 20; runner += 5) {
-//			
-//			humanSquaring.humanSquaring(runner);
-//			
-//			assertEquals(10 % 5,(humanSquaring.firstDistance) % 5);
-//		}
-			
-		
+		this.obj.humanSquaring(77);
+		System.out.println(this.obj.calculationRoll);
 	}
 	
 
