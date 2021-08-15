@@ -4,6 +4,7 @@ public class StockItem implements Comparable<StockItem>{
 	private final String name;
 	private double price;
 	private int quantityStock = 0;
+	private int reserved = 0;
 	
 	public StockItem(String name, double price,int quant) {
 		this.name = name;
@@ -26,8 +27,8 @@ public class StockItem implements Comparable<StockItem>{
 		return price;
 	}
 
-	public int getQuantityStock() {
-		return quantityStock;
+	public int getAvaliableQuantityStock() {
+		return quantityStock - reserved;
 	}
 	
 	public void setPrice(double price) {
@@ -45,6 +46,42 @@ public class StockItem implements Comparable<StockItem>{
 		}
 		
 	}
+	
+	public int getReservedStock() {
+		return this.reserved;
+	}
+	
+	
+	public int reserveStock(int quantity) {
+		if(quantity <= this.getAvaliableQuantityStock()) {
+			reserved += quantity;
+			
+			return quantity;
+		}
+		
+		return 0;
+	}
+	
+	public int unreserveStock(int quantity) {
+		if(quantity <= this.reserved) {
+			reserved -= quantity;
+			
+			return quantity;
+		}
+		
+		return 0;
+	}
+	
+	public int finaliseStock(int quantity) {
+		if(quantity <= reserved) {
+			quantityStock -= quantity;
+			reserved -= quantity;
+			return quantity;
+		}
+		
+		return 0;
+	}
+	
 
 	@Override
 	public int compareTo(StockItem obj) {
@@ -80,7 +117,7 @@ public class StockItem implements Comparable<StockItem>{
 	
 	@Override
 	public String toString() {
-		return this.name + " " + this.price;
+		return this.name + " " + this.price + " Reserved: "+this.reserved;
 	}
 	
 	public int hashCode() {
