@@ -13,7 +13,7 @@ public class Album {
 	public Album() {
 		
 	}
-	
+	 
 	public Album(String n, String a) {
 		this.name = n;
 		this.artist = a; 
